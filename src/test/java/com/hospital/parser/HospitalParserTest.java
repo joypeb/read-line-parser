@@ -2,6 +2,7 @@ package com.hospital.parser;
 
 import com.hospital.Hospital;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class HospitalParserTest {
@@ -10,6 +11,7 @@ public class HospitalParserTest {
 
     //annotation
     @Test
+    @DisplayName("Parsing doing well")
     void name() {
         HospitalParser hospitalParser = new HospitalParser();
         Hospital hospital = hospitalParser.parse(str);

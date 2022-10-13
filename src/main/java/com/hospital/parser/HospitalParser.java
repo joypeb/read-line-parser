@@ -10,7 +10,7 @@ import java.util.List;
 public class HospitalParser implements Parser<Hospital>{
     @Override
     public Hospital parse(String str) {
-        String replaceStr = str.replaceAll("\'", "\\\'");
+        String replaceStr = str.replaceAll("\'", "\\\\'");
         String[] splitted = replaceStr.split(",");
 
         return new Hospital("\'"+splitted[0]+"\'","\'"+splitted[1]+"\'","\'"+divideDistrict(splitted[1])+"\'","\'"+splitted[2]+"\'",
@@ -28,7 +28,7 @@ public class HospitalParser implements Parser<Hospital>{
     }
 
     public String searchDivision(String name) {
-        String[] department = {"신경","산부","소아","정형","성형","피부","이비인후","안과","신경정신","흉부","응급","치과"};
+        String[] department = {"신경","산부","소아","정형","성형","피부","이비인후","안과","신경정신","흉부","응급","치과","한의원"};
         for(int i=0; i<department.length; i++) {
             if(name.contains(department[i])) {
                 return "\'" + department[i] + "\'";
@@ -56,7 +56,8 @@ public class HospitalParser implements Parser<Hospital>{
 
             for(Hospital hos : hospitals) {
                 values = "(" + hos.getId() + "," + hos.getAddress() + "," + hos.getDistrict() + "," + hos.getCategory()
-                        + "," + hos.getEmergencyRoom() + "," + hos.getName() + "," + hos.getSubdivision() + "),\n";
+                        + "," + hos.getEmergencyRoom() + "," + hos.getName() + "," + hos.getSubdivision() + ")";
+                writer.append(",\n");
                 writer.append(values);
             }
             writer.append(";");
