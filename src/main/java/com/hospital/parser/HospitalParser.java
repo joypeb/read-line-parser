@@ -40,6 +40,7 @@ public class HospitalParser implements Parser<Hospital>{
     public void writeSQL(List<Hospital> hospital) {
         List<Hospital> hospitals = hospital;
         File file = new File("./Files/seoul-hospitals.sql");
+        int cnt = 1;
 
         try {
             if (!file.exists()) { // 파일이 존재하지 않으면
@@ -48,17 +49,21 @@ public class HospitalParser implements Parser<Hospital>{
 
             BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
 
-            String insert = "INSERT INTO `likelionDB`.`seoul_hospital`\n" +
+            String insert = String.format("INSERT INTO `likelionDB`.`seoul_hospital`\n" +
                     "(`id`," + "`address`," + "`district`," + "`category`," + "`emergency_room`," + "`name`," + "`subdivision`)\n" +
-                    "VALUES\n";
+                    "VALUES\n");
             String values;
             writer.append(insert);
 
-            for(Hospital hos : hospitals) {
-                values = "(" + hos.getId() + "," + hos.getAddress() + "," + hos.getDistrict() + "," + hos.getCategory()
-                        + "," + hos.getEmergencyRoom() + "," + hos.getName() + "," + hos.getSubdivision() + ")";
-                writer.append(",\n");
+            for (Hospital hos : hospitals) {
+                values = String.format("(" + hos.getId() + "," + hos.getAddress() + "," + hos.getDistrict() + "," + hos.getCategory()
+                        + "," + hos.getEmergencyRoom() + "," + hos.getName() + "," + hos.getSubdivision() + ")");
                 writer.append(values);
+
+                if (cnt != hospitals.size()) {
+                    writer.append(",\n");
+                }
+                cnt++;
             }
             writer.append(";");
             writer.close();
