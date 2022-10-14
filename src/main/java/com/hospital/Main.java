@@ -12,6 +12,8 @@ public class Main {
         List<Hospital> hospitals = hospitalLineReader.readLine(filename);
 
         Writer writeSql = new Writer();
-        writeSql.writeSQL(hospitals);
+        //writeSql.writeSQL(hospitals);
+
+
     }
 }
