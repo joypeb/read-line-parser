@@ -33,6 +33,15 @@ public class Hospital {
         return sql;
     }
 
+    public String getSqlQuery() {
+        return String.format("INSERT INTO `likelionDB`.`seoul_hospital`\n" +
+                "(`id`,`address`,`district`,`category`,`emergency_room`,`name`,`subdivision`)\n" +
+                "VALUES\n");
+    }
+    public String getSqlQueryValue() {
+        return String.format("(" + this.id + "," + this.address + "," + this.district + "," + this.category + "," + this.emergencyRoom + "," + this.name + "," + this.subdivision+")");
+    }
+
     public String getId() {
         return id;
     }
