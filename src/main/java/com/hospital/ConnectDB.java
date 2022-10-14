@@ -23,11 +23,17 @@ public class ConnectDB {
 
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(
-                    "show databases"
+                    "SELECT * FROM likelionDB.seoul_hospital"
             );
 
             while(rs.next()) {
-                System.out.println(rs.getString(1));
+                System.out.print("id:" + rs.getString(1));
+                System.out.print(", address: " + rs.getString(2));
+                System.out.print(", district: " + rs.getString(3));
+                System.out.print(", category: " + rs.getString(4));
+                System.out.print(", emergency_room: " + rs.getString(5));
+                System.out.print(", name: " + rs.getString(6));
+                System.out.print(", subdivision: " + rs.getString(7)+"\n");
             }
         } catch (Exception e) {
             e.printStackTrace();
