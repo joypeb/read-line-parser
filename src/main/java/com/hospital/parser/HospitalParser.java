@@ -34,7 +34,7 @@ public class HospitalParser implements Parser<Hospital>{
                 return "\'" + department[i] + "\'";
             }
         }
-        return null;
+        return "";
     }
 
     public void writeSQL(List<Hospital> hospital) {

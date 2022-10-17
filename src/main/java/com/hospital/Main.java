@@ -1,5 +1,6 @@
 package com.hospital;
 
+import com.hospital.dao.HospitalDao;
 import com.hospital.parser.HospitalParser;
 import com.hospital.parser.Writer;
 
@@ -14,6 +15,8 @@ public class Main {
         Writer writeSql = new Writer();
         //writeSql.writeSQL(hospitals);
 
+        HospitalDao hospitalDao = new HospitalDao();
+        hospitalDao.add(hospitals);
 
     }
 }

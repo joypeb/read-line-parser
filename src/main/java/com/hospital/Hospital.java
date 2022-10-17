@@ -21,7 +21,7 @@ public class Hospital {
 
     public String getSqlInsertQuery() {
         String sql = String.format("INSERT INTO `likelion-db`.`seoul_hospital`\n" +
-                "(`id`,`address`,`district`,`category`,`emergency_room`,`name`,`subdivision`)\n"+
+                "(`id`,`address`,`district`,`category`,`emergency_room`,`name`,`subdivision`)\n" +
                 "VALUES\n" +
                 "(\"%s\",\n" +
                 "\"%s\",\n" +
@@ -38,24 +38,25 @@ public class Hospital {
                 "(`id`,`address`,`district`,`category`,`emergency_room`,`name`,`subdivision`)\n" +
                 "VALUES\n");
     }
+
     public String getSqlQueryValue() {
-        return String.format("(" + this.id + "," + this.address + "," + this.district + "," + this.category + "," + this.emergencyRoom + "," + this.name + "," + this.subdivision+")");
+        return String.format("(" + this.id + "," + this.address + "," + this.district + "," + this.category + "," + this.emergencyRoom + "," + this.name + "," + this.subdivision + ")");
     }
 
     public String getId() {
-        return id;
+        return id.replaceAll("\'", "");
     }
 
     public String getAddress() {
-        return address;
+        return address.replaceAll("\'", "");
     }
 
     public String getDistrict() {
-        return district;
+        return district.replaceAll("\'", "");
     }
 
     public String getCategory() {
-        return category;
+        return category.replaceAll("\'", "");
     }
 
     public Integer getEmergencyRoom() {
@@ -63,10 +64,10 @@ public class Hospital {
     }
 
     public String getName() {
-        return name;
+        return name.replaceAll("\'", "");
     }
 
     public String getSubdivision() {
-        return subdivision;
+        return subdivision.replaceAll("\'", "");
     }
 }
