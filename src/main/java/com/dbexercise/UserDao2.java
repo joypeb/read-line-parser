@@ -4,12 +4,22 @@ import java.sql.*;
 import java.util.Map;
 
 public class UserDao2 {
-    public void add() throws SQLException {
-        Map<String,String> env = System.getenv();
+    public Connection connection() {
+        Map<String, String> env = System.getenv();
         String dbHost = env.get("DB_HOST");
         String dbUser = env.get("DB_USER");
         String dbPassword = env.get("DB_PASSWORD");
-        Connection conn = DriverManager.getConnection(dbHost,dbUser,dbPassword);
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(dbHost, dbUser, dbPassword);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return conn;
+    }
+    public void add() throws SQLException {
+        UserDao2 userDao2 = new UserDao2();
+        Connection conn = userDao2.connection();
         PreparedStatement ps = conn.prepareStatement(
                 "INSERT INTO likelionDB.users(id,name,password) VALUES (?,?,?)"
         );
@@ -24,11 +34,8 @@ public class UserDao2 {
     }
 
     public void select() throws SQLException {
-        Map<String,String> env = System.getenv();
-        String dbHost = env.get("DB_HOST");
-        String dbUser = env.get("DB_USER");
-        String dbPassword = env.get("DB_PASSWORD");
-        Connection conn = DriverManager.getConnection(dbHost,dbUser,dbPassword);
+        UserDao2 userDao2 = new UserDao2();
+        Connection conn = userDao2.connection();
         PreparedStatement ps = conn.prepareStatement(
                 "SELECT * from likelionDB.users where id = ?"
         );
