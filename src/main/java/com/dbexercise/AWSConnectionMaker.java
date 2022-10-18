@@ -1,0 +1,15 @@
+package com.dbexercise;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.Map;
+
+public class AWSConnectionMaker {
+    public Connection makeConnection() throws Exception {
+        Map<String, String> env = System.getenv();
+
+        Connection c = DriverManager.getConnection(env.get("DB_HOST"),env.get("DB_USER"),env.get("DB_PASSWORD"));
+
+        return c;
+    }
+}

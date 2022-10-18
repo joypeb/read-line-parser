@@ -7,9 +7,11 @@ public abstract class UserDaoAbstract {
 
     public abstract Connection makeConnection() throws Exception;
 
+    AWSConnectionMaker awsConnectionMaker = new AWSConnectionMaker();
+
     public void add(User user) throws Exception {
         AWSUserDaoImpl awsUserDao = new AWSUserDaoImpl();
-        Connection c = awsUserDao.makeConnection();
+        Connection c = awsConnectionMaker.makeConnection();
         PreparedStatement ps = c.prepareStatement(
                 "INSERT INTO likelionDB.users(id,name,password) VALUES (?,?,?)"
         );
