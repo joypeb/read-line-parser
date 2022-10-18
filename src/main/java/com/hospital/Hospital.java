@@ -43,20 +43,48 @@ public class Hospital {
         return String.format("(" + this.id + "," + this.address + "," + this.district + "," + this.category + "," + this.emergencyRoom + "," + this.name + "," + this.subdivision + ")");
     }
 
-    public String getId() {
+    public String getId2() {
         return id.replaceAll("\'", "");
     }
 
-    public String getAddress() {
+    public String getAddress2() {
         return address.replaceAll("\'", "");
     }
 
-    public String getDistrict() {
+    public String getDistrict2() {
         return district.replaceAll("\'", "");
     }
 
-    public String getCategory() {
+    public String getCategory2() {
         return category.replaceAll("\'", "");
+    }
+
+    public Integer getEmergencyRoom2() {
+        return emergencyRoom;
+    }
+
+    public String getName2() {
+        return name.replaceAll("\'", "");
+    }
+
+    public String getSubdivision2() {
+        return subdivision.replaceAll("\'", "");
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public String getCategory() {
+        return category;
     }
 
     public Integer getEmergencyRoom() {
@@ -64,10 +92,10 @@ public class Hospital {
     }
 
     public String getName() {
-        return name.replaceAll("\'", "");
+        return name;
     }
 
     public String getSubdivision() {
-        return subdivision.replaceAll("\'", "");
+        return subdivision;
     }
 }
