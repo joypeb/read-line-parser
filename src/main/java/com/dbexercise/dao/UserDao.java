@@ -1,6 +1,7 @@
-package com.dbexercise;
+package com.dbexercise.dao;
 
-import java.io.FileNotFoundException;
+import com.dbexercise.domain.User;
+
 import java.io.FileReader;
 import java.io.Reader;
 import java.sql.*;

@@ -1,4 +1,4 @@
-package com.dbexercise;
+package com.dbexercise.domain;
 
 public class User {
     private String id,name,password;

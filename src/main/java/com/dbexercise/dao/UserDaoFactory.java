@@ -1,4 +1,4 @@
-package com.dbexercise;
+package com.dbexercise.dao;
 
 public class UserDaoFactory {
     public UserDao awsUserDao() {

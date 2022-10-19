@@ -1,10 +1,8 @@
 package com.line.dao;
 
-import com.dbexercise.AWSConnectionMaker;
-import com.dbexercise.ConnectinMaker;
-import com.dbexercise.User;
-import com.dbexercise.UserDao;
-import org.junit.jupiter.api.Assertions;
+import com.dbexercise.dao.AWSConnectionMaker;
+import com.dbexercise.domain.User;
+import com.dbexercise.dao.UserDao;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
