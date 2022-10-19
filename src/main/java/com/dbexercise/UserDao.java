@@ -3,31 +3,31 @@ package com.dbexercise;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.*;
 import java.util.Properties;
 
 public class UserDao {
-    public void add() {
+    private ConnectinMaker connectinMaker = new AWSConnectionMaker();
+
+    public UserDao(ConnectinMaker connectinMaker) {
+        this.connectinMaker = connectinMaker;
+    }
+
+
+    public void add(User user) throws SQLException {
+        Connection c = connectinMaker.makeConnection();
+
         Properties properties = new Properties();
         try {
             Reader reader = new FileReader("./.properties");
             properties.load(reader);
-
-            Connection c = DriverManager.getConnection(
-                    properties.getProperty("url"),
-                    properties.getProperty("user"),
-                    properties.getProperty("password")
-            );
-
             PreparedStatement ps = c.prepareStatement(
                     "insert into likelionDB.users(id,name,password) values(?,?,?)"
             );
 
-            ps.setString(1,"01");
-            ps.setString(2,"Eunbin");
-            ps.setString(3,"password");
+            ps.setString(1,user.getId());
+            ps.setString(2,user.getName());
+            ps.setString(3,user.getPassword());
 
             ps.executeUpdate();
 
@@ -38,8 +38,26 @@ public class UserDao {
         }
     }
 
-    public static void main(String[] args) {
+    public User findById(String id) throws SQLException {
+        Connection c = connectinMaker.makeConnection();
+
+        PreparedStatement ps = c.prepareStatement("" +
+                "SELECT * FROM likelionDB.users WHERE id = ?"
+        );
+
+        ps.setString(1,id);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        User user = new User(rs.getString(1), rs.getString(2), rs.getString(3));
+
+        ps.close();
+        c.close();
+        rs.close();
+
+        return user;
+    }
+    /*public static void main(String[] args) {
         UserDao dao = new UserDao();
         dao.add();
-    }
+    }*/
 }
